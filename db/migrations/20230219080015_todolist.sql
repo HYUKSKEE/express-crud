@@ -1,0 +1,13 @@
+-- migrate:up
+CREATE TABLE todolist (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    todo TEXT NOT NULL,
+    is_completed BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT todolist_user_id FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- migrate:down
+DROP TABLE todolist;
